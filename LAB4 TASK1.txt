@@ -1,0 +1,36 @@
+% 1. Unifying two identical atoms succeeds
+
+48 ?- house = house.
+true.
+% 2. Unifying two different atoms fails
+
+49 ?- house = abc.
+false.
+% 3. Same functor and arity (edge/2). Second arguments match ('b'), so variable C unifies with 'a'
+
+50 ?- edge(a,b) = edge(C,b).
+C = a.
+% 4. Same functor and arity. Variables C and B bind to 'a' and 'd' respectively
+51 ?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+% 5. Unifies position by position (same as query 4)
+52 ?- edge(C,B) = edge(a,d).
+C = a,
+B = d.
+% 6. Variable A unifies with atom 'a', and variable B unifies with compound term f(g,h)
+53 ?- edge(A,f(g,h)) = edge(a,B).
+A = a,
+B = f(g, h).
+% 7. Fails because the same variable A cannot hold two different atoms ('b' and 'c') at the same time
+54 ?- edge(A,A) = edge(b,c).
+false.
+% 8. Succeeds because variable A consistently unifies with 'b' in both argument positions
+55 ?- edge(A,A) = edge(b,b).
+A = b.
+% 9. Variable A is linked to B, then B is instantiated to 'f', making both equal to 'f'
+56 ?-  A = B, B = f.
+A = B, B = f.
+% 10. A and B become 'f'. Unifying A ('f') with 'e' fails due to constant clash ('f' \= 'e')
+57 ?- A = B, B = f, A = e.
+false.

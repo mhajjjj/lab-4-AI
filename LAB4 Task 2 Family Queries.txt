@@ -1,0 +1,49 @@
+## Task 2: Family Queries
+
+
+
+% 1. Shows the names of all females
+59 ?- female(X).
+X = sara ;
+X = nora.
+% 2. Shows whether there is any male (using anonymous variable _)
+60 ?- male(_).
+true .
+% 3. Shows the grandparent of Faisal (GP is the grandparent, P is the parent)
+61 ?- parent(GP, P), parent(P, faisal).
+GP = ali,
+P = muhammad ;
+false.
+% 4. Shows all daughters of Ahmad
+62 ?- parent(ahmad, X), female(X).
+X = sara ;
+X = nora ;
+false.
+% 5. Shows whether Ahmad and Muhammad have a common parent
+63 ?- parent(P, ahmad), parent(P, muhammad).
+P = ali.
+% 6. Shows whether Khan is the brother of Nora (shares same parent and Khan is male)
+64 ?- parent(P, nora), parent(P, khan), male(khan).
+P = ahmad.
+
+
+
+
+
+male(ali).
+male(ahmad).
+male(faisal).
+male(hassan).
+male(muhammad).
+male(khan).
+
+female(sara).
+female(nora).
+
+parent(ali, ahmad).
+parent(ali, muhammad).
+parent(ahmad, sara).
+parent(ahmad, nora).
+parent(ahmad, khan).
+parent(muhammad, faisal).
+parent(faisal, hassan).
